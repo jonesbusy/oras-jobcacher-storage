@@ -1,0 +1,7 @@
+unclassified:
+  globalItemStorage:
+    storage:
+      oras:
+        namespace: "caches"
+        registryUrl: "localhost:5000"
+        storageCredentialId: "the-credentials-id"
