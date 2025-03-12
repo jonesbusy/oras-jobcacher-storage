@@ -129,7 +129,7 @@ public class RegistryClient {
      */
     public void testConnection() throws Exception {
         Path tmpFile = Files.createTempFile("tmp-", "jenkins-oras-plugin-test");
-        Files.write(tmpFile, "jenkins-oras-plugin-test".getBytes());
+        Files.writeString(tmpFile, "jenkins-oras-plugin-test");
         ContainerRef ref = ContainerRef.parse(
                 "%s/%s/jenkins-oras-plugin-test:latest".formatted(config.registryUrl(), config.namespace()));
         Layer layer = registry.pushBlob(ref, tmpFile);

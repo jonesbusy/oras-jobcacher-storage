@@ -21,7 +21,6 @@ import jenkins.plugins.itemstorage.ItemStorageDescriptor;
 import land.oras.ContainerRef;
 import land.oras.exception.OrasException;
 import net.sf.json.JSONObject;
-import org.apache.commons.lang3.StringUtils;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -146,7 +145,7 @@ public class RegistryItemStorage extends ItemStorage<RegistryItemPath> implement
         public FormValidation doCheckRegistryUrl(@QueryParameter String registryUrl) {
             Jenkins.get().checkPermission(Jenkins.ADMINISTER);
             FormValidation ret = FormValidation.ok();
-            if (StringUtils.isBlank(registryUrl)) {
+            if (registryUrl == null || registryUrl.isBlank()) {
                 ret = FormValidation.error("Server url cannot be blank");
             } else {
                 try {
@@ -165,7 +164,7 @@ public class RegistryItemStorage extends ItemStorage<RegistryItemPath> implement
                 @QueryParameter("storageCredentialId") final String storageCredentialId,
                 @QueryParameter("namespace") final String namespace) {
             Jenkins.get().checkPermission(Jenkins.ADMINISTER);
-            if (StringUtils.isBlank(registryUrl) || StringUtils.isBlank(namespace)) {
+            if (registryUrl == null || registryUrl.isBlank()) {
                 return FormValidation.error("Fields required");
             }
             // Namespace cannot end with /
